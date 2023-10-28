@@ -12,25 +12,21 @@ import axiosUrl from "../Components/Intercepter";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSingleUser, GetUser, getUserSuccess } from "../Redux/action";
 
-
 function Login() {
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
   });
- 
-  const dispatch=useDispatch()
+
+  const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
 
-
-  const {user}=useSelector((store)=>store.reducer)
-  
+  const { user } = useSelector((store) => store.reducer);
 
   useEffect(() => {
-    dispatch(GetUser)
-    
-  },[]);
+    dispatch(GetUser);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +42,7 @@ function Login() {
         user[i].userName == formData.userName &&
         user[i].password == formData.password
       ) {
-        dispatch(GetSingleUser(user[i]))
+        dispatch(GetSingleUser(user[i]));
         toast({
           title: "User Login",
           description: "Login success, you can see your data",
@@ -68,12 +64,11 @@ function Login() {
     });
   };
   const { userName, password } = formData;
-  console.log("user", user)
-
+  console.log("user", user);
 
   return (
-    <Box>
-      <Heading fontFamily={"sans-serif"} mt={"50px"}>
+    <Box bg={"blue.500"} color={"white"} h={"100vh"}>
+      <Heading fontFamily={"sans-serif"} pt={"50px"}>
         Login
       </Heading>
       <Box
@@ -83,6 +78,9 @@ function Login() {
         mb={"50px"}
         p={"20px"}
         boxShadow={"2xl"}
+        bg={"white"}
+        color={"black"}
+        borderRadius={"10px"}
       >
         <form onSubmit={handleSubmit}>
           <FormLabel>User Name</FormLabel>
@@ -107,7 +105,13 @@ function Login() {
           />
           <br />
           <br />
-          <Input cursor={"pointer"} type="submit" />
+          <Input
+            cursor={"pointer"}
+            bg={"orange.500"}
+            color={"white"}
+            fontWeight={"bold"}
+            type="submit"
+          />
         </form>
         <br />
         <Text fontWeight={"bold"}>

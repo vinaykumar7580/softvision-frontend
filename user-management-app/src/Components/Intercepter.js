@@ -2,7 +2,7 @@
 import axios from "axios"
 
 const axiosUrl = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://lazy-rose-turkey-coat.cyclic.app",
     timeout: 10000
 })
 

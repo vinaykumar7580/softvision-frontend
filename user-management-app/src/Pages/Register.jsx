@@ -1,4 +1,4 @@
-import { Box, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, FormLabel, Heading, Input, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
@@ -62,75 +62,122 @@ function Register() {
       emailId: "",
     });
   };
-  const { userName, password, firstName, lastName, dob, mobileNo, emailId } = formData;
+
+  const handleMobile = () => {
+    const mobileNumberPattern = /^[0-9]{10}$/;
+    if (!mobileNumberPattern.test(mobileNo)) {
+      return "Please enter valid 10 digit mobile number.";
+    } else {
+      return "Valid mobile number.";
+    }
+  };
+
+  const { userName, password, firstName, lastName, dob, mobileNo, emailId } =
+    formData;
+
   return (
-    <Box>
-      <Heading fontFamily={"sans-serif"} mt={"50px"}>
+    <Box bg={"blue.500"} color={"white"} h={"100vh"}>
+      <Heading fontFamily={"sans-serif"} pt={"50px"}>
         Register
       </Heading>
       <Box
-        w={"30%"}
+        w={"40%"}
         m={"auto"}
         mt={"20px"}
         mb={"50px"}
-        p={"20px"}
+        p={"30px"}
         boxShadow={"2xl"}
+        bg={"white"}
+        color={"black"}
+        borderRadius={"10px"}
       >
         <form onSubmit={handleSubmit}>
-          <FormLabel>User Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter username"
-            name="userName"
-            value={userName}
-            isRequired
-            onChange={handleChange}
-          />
+          <Flex
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
+            <Box w={"50%"}>
+              <FormLabel>User Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter username"
+                name="userName"
+                value={userName}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+            <Box w={"50%"}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter password"
+                name="password"
+                value={password}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+          </Flex>
           <br />
+          <Flex
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
+            <Box w={"50%"}>
+              <FormLabel>First Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter firstname"
+                name="firstName"
+                value={firstName}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+            <Box w={"50%"}>
+              <FormLabel>Last Name</FormLabel>
+              <Input
+                type="text"
+                placeholder="Enter lastname"
+                name="lastName"
+                value={lastName}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+          </Flex>
           <br />
-          <FormLabel>Password</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter password"
-            name="password"
-            value={password}
-            isRequired
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-          <FormLabel>First Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter firstname"
-            name="firstName"
-            value={firstName}
-            isRequired
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-          <FormLabel>Last Name</FormLabel>
-          <Input
-            type="text"
-            placeholder="Enter lastname"
-            name="lastName"
-            value={lastName}
-            isRequired
-            onChange={handleChange}
-          />
-          <br />
-          <br />
-          <FormLabel>Date Of Birth</FormLabel>
-          <Input
-            type="date"
-            placeholder="Enter date of birth"
-            name="dob"
-            value={dob}
-            isRequired
-            onChange={handleChange}
-          />
-          <br />
+          <Flex
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
+            <Box w={"50%"}>
+              <FormLabel>Date Of Birth</FormLabel>
+              <Input
+                type="date"
+                placeholder="Enter date of birth"
+                name="dob"
+                value={dob}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+            <Box w={"50%"}>
+              <FormLabel>Email address</FormLabel>
+              <Input
+                type="email"
+                placeholder="Enter email"
+                name="emailId"
+                value={emailId}
+                isRequired
+                onChange={handleChange}
+              />
+            </Box>
+          </Flex>
           <br />
           <FormLabel>Mobile Number</FormLabel>
           <Input
@@ -141,20 +188,17 @@ function Register() {
             isRequired
             onChange={handleChange}
           />
+          <Text textAlign={"left"} color={"red"}>
+            {handleMobile()}
+          </Text>
           <br />
-          <br />
-          <FormLabel>Email address</FormLabel>
           <Input
-            type="email"
-            placeholder="Enter email"
-            name="emailId"
-            value={emailId}
-            isRequired
-            onChange={handleChange}
+            cursor={"pointer"}
+            bg={"orange.500"}
+            color={"white"}
+            fontWeight={"bold"}
+            type="submit"
           />
-          <br />
-          <br />
-          <Input cursor={"pointer"} type="submit" />
         </form>
         <br />
         <Text fontWeight={"bold"}>
